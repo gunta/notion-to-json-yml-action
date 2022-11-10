@@ -19,6 +19,11 @@
   "homepage": "https://github.com/gunta/notion-to-yml-github-pr#readme",
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "@actions/github": "^5.1.1"
+    "@actions/github": "^5.1.1",
+    "@notionhq/client": "^2.2.2",
+    "json5": "^2.2.1",
+    "octokit": "^2.0.10",
+    "safe-stable-stringify": "^2.4.1",
+    "yaml": "^2.1.3"
   }
 }

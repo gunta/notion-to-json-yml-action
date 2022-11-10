@@ -15,13 +15,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Hello world action step
+      - name: Test notion import from DB
         uses: ./ # Uses an action in the root directory
         id: test-notion-import
         with:
-          notion-token: '1234'
-          notion-db: '145'
-          output-file: 'e.yml'
+          notion-token: ${{ secrets.NOTION_TOKEN }}
+          notion-db: ${{ secrets.NOTION_DATABASE }}
+          output-file: 'epepe.yml'
+          output-format: 'json5'
       # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+#      - name: Get the output time
+#        run: echo "The time was ${{ steps.hello.outputs.time }}"

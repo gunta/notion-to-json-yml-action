@@ -11,11 +11,15 @@ inputs:
     description: 'File to output'
     required: true
     default: 'notion.json'
+  output-format:
+    description: 'File format to output. Normally deduced from file output extension.'
+    required: false
+  ignore-columns:
+    description: 'If any, ignore the columns specified by name'
+    required: false
 outputs:
   updated:
     description: 'Whether it was updated or not'
-  time: # id of output
-    description: 'The time we greeted you'
 runs:
   using: 'node16'
   main: 'index.js'
