@@ -1,11 +1,11 @@
 const core = require('@actions/core')
-const github = require('@actions/github')
 const path = require('path')
 const {Client} = require("@notionhq/client")
 const YAML = require('yaml')
 const safeStableStringify = require('safe-stable-stringify')
 const JSON5 = require('json5')
 const fs = require('fs')
+const {exec} = require("child_process");
 
 try {
     const notionToken = core.getInput('notion-token')
@@ -13,7 +13,7 @@ try {
     const outputFile = core.getInput('output-file')
     const outputFileExt = path.extname(outputFile).substring(1)
     const outputFormat = core.getInput('output-format').length === 0 ? outputFileExt : core.getInput('output-format')
-    const ignoreColumns = core.getInput('ignore-columns')
+    const ignoreColumns = core.getInput('ignore-columns') || []
 
     if (notionToken.length === 0) {
         core.error('You need to specify a notion-token')
@@ -27,10 +27,6 @@ try {
         core.error('You need to specify a output-file')
     }
 
-    // if (ignoreColumns.length !== 0) {
-    //     core.error('ignore-columns should be an array of strings')
-    // }
-
     core.debug(`notionDb: ${notionDb}`)
     core.debug(`notionToken: ${notionToken}`)
     core.debug(`Output file: ${outputFile}`)
@@ -38,17 +34,10 @@ try {
     core.debug(`Output file format: ${outputFormat}`)
 
     const notion = new Client({
-            auth: notionToken,
-        })
+        auth: notionToken,
+    })
 
-    ;(async () => {
-        /*
-        Database info:
-
-        const database = await notion.databases.retrieve({database_id: notionDb})
-        core.debug(`Database name: ${database.title[0].plain_text}`)
-         */
-
+    const run = async () => {
         const pages = await notion.databases.query({
             database_id: notionDb
         })
@@ -63,6 +52,9 @@ try {
             let currentChild = {}
 
             for (const [key, value] of entries) {
+                if (ignoreColumns.includes(key))
+                    continue
+
                 switch (value.type) {
                     case 'multi_select':
                         if (value?.multi_select !== null) {
@@ -144,8 +136,8 @@ try {
         exec(`cat ${outputFile}`, (error, stdout, stderr) => {
             console.log(`stdout: ${stdout}`)
         })
-
-    })()
+    }
+    run()
 
 } catch (error) {
     core.setFailed(error.message)

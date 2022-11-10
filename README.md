@@ -1,14 +1,11 @@
-# notion-to-file-github-pr
+# notion-to-json-yml-file
 
-Reads from a Notion Database and auto generates a yml file, then creates a PR for it.
+Reads from a Notion Database and auto generates a JSON/YML file.
 
 What it does for you
 1. Reads all the data from a Notion database
-2. Generates an output file based on the filename extension (ie. `.json`, `.yml`)
-3. If there is no file, create it
-4. If there is a file already, overwrites it
-5. If there were any changes, commit them, if not, exit
-6. Create a PR based on the file changes
+2. Based on Title, it generates a big object
+2. Then it outputs a file based on the filename extension (ie. `.json`, `.yml`)
 
 ## Inputs
 
@@ -33,12 +30,7 @@ Currently, the following output formats are supported:
 - **json**
 - **json5**
 
-The output format is automatically deduced from the file extension if not specified.
-
-## Format
-
-Currently, it uses the Title as a key for output.
-
+The output format is automatically deduced from the file extension when not specified.
 
 ## Example usage
 
@@ -49,5 +41,3 @@ with:
     notion-db: ${{ secrets.NOTION_DATABASE }}
     output-file: 'notion.json'
 ```
-
-# 

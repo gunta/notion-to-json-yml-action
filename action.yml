@@ -1,5 +1,5 @@
-name: 'Hello World'
-description: 'Reads from a Notion Database and auto generates a file, then creates a PR'
+name: 'Notion To JSON/YML File'
+description: 'Reads from a Notion Database and auto generates a JSON/YML file'
 inputs:
   notion-token:
     description: 'Notion token'
