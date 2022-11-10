@@ -1,10 +1,12 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
 const path = require('path')
-const { Client } = require("@notionhq/client")
+const {Client} = require("@notionhq/client")
 const YAML = require('yaml')
 const safeStableStringify = require('safe-stable-stringify')
 const JSON5 = require('json5')
+// const fs = require('fs').promises
+const fs = require('fs')
 
 try {
     const notionToken = core.getInput('notion-token')
@@ -37,11 +39,11 @@ try {
     core.debug(`Output file format: ${outputFormat}`)
 
     const notion = new Client({
-        auth: notionToken,
-    })
+            auth: notionToken,
+        })
 
     ;(async () => {
-        const database = await notion.databases.retrieve({ database_id: notionDb })
+        const database = await notion.databases.retrieve({database_id: notionDb})
         core.debug(`Database name: ${database.title[0].plain_text}`)
 
         const pages = await notion.databases.query({
@@ -60,7 +62,7 @@ try {
         for (const [key, value] of entries) {
             switch (value.type) {
                 case 'multi_select':
-                    if (value?.multi_select !== null ) {
+                    if (value?.multi_select !== null) {
                         let elements = []
                         value.multi_select.forEach((element) => {
                             elements.push(element.name)
@@ -132,7 +134,14 @@ try {
                 break
         }
 
-        console.log(outputContent)
+        // Save to file
+        fs.writeFileSync(outputFile, outputContent)
+
+        const {exec} = require("child_process")
+        exec(`cat ${outputFile}`, (error, stdout, stderr) => {
+            console.log(`stdout: ${stdout}`)
+        })
+
 
     })()
 
