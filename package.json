@@ -1,0 +1,24 @@
+{
+  "name": "notion-to-yml-github-pr",
+  "version": "1.0.0",
+  "description": "Reads from a Notion Database and auto generates a json/yml file, then creates a PR for it",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gunta/notion-to-yml-github-pr.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gunta/notion-to-yml-github-pr/issues"
+  },
+  "homepage": "https://github.com/gunta/notion-to-yml-github-pr#readme",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1"
+  }
+}
