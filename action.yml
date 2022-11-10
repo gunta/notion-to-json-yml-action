@@ -1,11 +1,19 @@
 name: 'Hello World'
-description: 'Greet someone and record the time'
+description: 'Reads from a Notion Database and auto generates a file, then creates a PR'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  notion-token:
+    description: 'Notion token'
     required: true
-    default: 'World'
+  notion-db:
+    description: 'Notion database'
+    required: true
+  output-file:
+    description: 'File to output'
+    required: true
+    default: 'notion.json'
 outputs:
+  updated:
+    description: 'Whether it was updated or not'
   time: # id of output
     description: 'The time we greeted you'
 runs:

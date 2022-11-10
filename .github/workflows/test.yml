@@ -8,17 +8,20 @@ on:
 jobs:
   notion-to-file:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to test the action
     steps:
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Hello world action step
         uses: ./ # Uses an action in the root directory
-        id: hello
+        id: test-notion-import
         with:
-          who-to-greet: 'Mona the Octocat!!'
+          notion-token: '1234'
+          notion-db: '145'
+          output-file: 'e.yml'
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
