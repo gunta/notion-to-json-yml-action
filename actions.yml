@@ -11,3 +11,6 @@ outputs:
 runs:
   using: 'node16'
   main: 'index.js'
+branding:
+  icon: "log-in"
+  color: "blue"
