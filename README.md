@@ -41,3 +41,27 @@ with:
     notion-db: ${{ secrets.NOTION_DATABASE }}
     output-file: 'notion.json'
 ```
+
+# Making a PR based on the updates from Notion
+```yaml
+- name: Update file
+  uses: ./
+  id: notion-import
+  with:
+    notion-token: ${{ secrets.NOTION_TOKEN }}
+    notion-db: ${{ secrets.NOTION_DATABASE }}
+    output-file: './path/database.yml'
+    output-format: 'yml'
+    ignore-columns: |
+      'Status'
+
+- name: Create Pull Request
+  uses: peter-evans/create-pull-request@v4
+  with:
+    commit-message: 'Update from Notion'
+    branch: 'automation/update-from-notion'
+    delete-branch: true
+    title: 'Update from Notion'
+    body: 'Automated changes by GitHub action'
+    labels: 'automated-notion'
+```
