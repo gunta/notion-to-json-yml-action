@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to test the action
     steps:
-      # To use this repository's private action,
-      # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -26,6 +24,13 @@ jobs:
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: 'Support Codes from Notion updated'
+          branch: 'automation/update-support-codes'
+          delete-branch: true
+          title: 'Update Support Codes from Notion'
+          body: 'Automated changes by GitHub action'
+          labels: 'automated-support-codes'
 
       # Use the output from the `hello` step
 #      - name: Get the output time
