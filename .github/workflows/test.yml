@@ -23,6 +23,10 @@ jobs:
           notion-db: ${{ secrets.NOTION_DATABASE }}
           output-file: 'notion.yml'
           output-format: 'json'
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+
       # Use the output from the `hello` step
 #      - name: Get the output time
 #        run: echo "The time was ${{ steps.hello.outputs.time }}"
