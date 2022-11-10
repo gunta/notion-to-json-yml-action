@@ -5,7 +5,6 @@ const {Client} = require("@notionhq/client")
 const YAML = require('yaml')
 const safeStableStringify = require('safe-stable-stringify')
 const JSON5 = require('json5')
-// const fs = require('fs').promises
 const fs = require('fs')
 
 try {
@@ -43,79 +42,83 @@ try {
         })
 
     ;(async () => {
+        /*
+        Database info:
+
         const database = await notion.databases.retrieve({database_id: notionDb})
         core.debug(`Database name: ${database.title[0].plain_text}`)
+         */
 
         const pages = await notion.databases.query({
             database_id: notionDb
-            // alphabetic sort
         })
 
         let finalPage = {}
 
-        let currentPage = pages.results[0].properties
+        pages.results.forEach((pageResult) => {
+            const currentPage = pageResult.properties
 
-        const entries = Object.entries(currentPage)
-        let currentTitle = ''
-        let currentChild = {}
+            const entries = Object.entries(currentPage)
+            let currentTitle = ''
+            let currentChild = {}
 
-        for (const [key, value] of entries) {
-            switch (value.type) {
-                case 'multi_select':
-                    if (value?.multi_select !== null) {
-                        let elements = []
-                        value.multi_select.forEach((element) => {
-                            elements.push(element.name)
-                        })
-                        currentChild[key] = elements
-                    }
-                    break
-                case 'select':
-                    if (value?.select !== null && value.select.name.length !== 0) {
-                        currentChild[key] = value.select.name
-                    }
-                    break
-                case 'rich_text':
-                    if (value?.rich_text.length !== 0) {
-                        currentChild[key] = value?.rich_text[0]?.plain_text
-                    }
-                    break
-                case 'checkbox':
-                    if (value?.checkbox !== null) {
-                        currentChild[key] = value.checkbox
-                    }
-                    break
-                case 'title':
-                    if (value?.title.length !== 0) {
-                        currentTitle = value?.title[0]?.plain_text
-                    }
-                    break
-                case 'number':
-                    if (value?.number !== null) {
-                        currentChild[key] = value?.number
-                    }
-                    break
-                case 'date':
-                    if (value?.date !== null) {
-                        currentChild[key] = value?.date
-                    }
-                    break
-                case 'url':
-                    if (value?.url?.length !== 0) {
-                        currentChild[key] = value?.url
-                    }
-                    break
-                case 'status':
-                    if (value?.status?.name?.length !== 0) {
-                        currentChild[key] = value?.status?.name
-                    }
-                    break
-                default:
-                    core.error(`Current value.type ${value.type} not yet supported`)
+            for (const [key, value] of entries) {
+                switch (value.type) {
+                    case 'multi_select':
+                        if (value?.multi_select !== null) {
+                            let elements = []
+                            value.multi_select.forEach((element) => {
+                                elements.push(element.name)
+                            })
+                            currentChild[key] = elements
+                        }
+                        break
+                    case 'select':
+                        if (value?.select !== null && value.select.name.length !== 0) {
+                            currentChild[key] = value.select.name
+                        }
+                        break
+                    case 'rich_text':
+                        if (value?.rich_text.length !== 0) {
+                            currentChild[key] = value?.rich_text[0]?.plain_text
+                        }
+                        break
+                    case 'checkbox':
+                        if (value?.checkbox !== null) {
+                            currentChild[key] = value.checkbox
+                        }
+                        break
+                    case 'title':
+                        if (value?.title.length !== 0) {
+                            currentTitle = value?.title[0]?.plain_text
+                        }
+                        break
+                    case 'number':
+                        if (value?.number !== null) {
+                            currentChild[key] = value?.number
+                        }
+                        break
+                    case 'date':
+                        if (value?.date !== null) {
+                            currentChild[key] = value?.date
+                        }
+                        break
+                    case 'url':
+                        if (value?.url?.length !== 0) {
+                            currentChild[key] = value?.url
+                        }
+                        break
+                    case 'status':
+                        if (value?.status?.name?.length !== 0) {
+                            currentChild[key] = value?.status?.name
+                        }
+                        break
+                    default:
+                        core.error(`Current value.type ${value.type} not yet supported`)
+                }
             }
-        }
-
-        finalPage[currentTitle] = currentChild
+            finalPage[currentTitle] = currentChild
+        })
 
         let outputContent = null
         switch (outputFormat) {
@@ -141,7 +144,6 @@ try {
         exec(`cat ${outputFile}`, (error, stdout, stderr) => {
             console.log(`stdout: ${stdout}`)
         })
-
 
     })()
 

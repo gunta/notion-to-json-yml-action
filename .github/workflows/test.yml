@@ -21,8 +21,8 @@ jobs:
         with:
           notion-token: ${{ secrets.NOTION_TOKEN }}
           notion-db: ${{ secrets.NOTION_DATABASE }}
-          output-file: 'epepe.yml'
-          output-format: 'json5'
+          output-file: 'notion.yml'
+          output-format: 'json'
       # Use the output from the `hello` step
 #      - name: Get the output time
 #        run: echo "The time was ${{ steps.hello.outputs.time }}"

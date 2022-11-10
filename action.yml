@@ -10,7 +10,6 @@ inputs:
   output-file:
     description: 'File to output'
     required: true
-    default: 'notion.json'
   output-format:
     description: 'File format to output. Normally deduced from file output extension.'
     required: false

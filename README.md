@@ -20,34 +20,34 @@ What it does for you
 
 **Required**- 
 
-### `output-path`
+### `output-file`
 
 Path where the output file should be.
 
 Example: `file.yml`
 
+### `output-format`
+
 Currently, the following output formats are supported:
-- **yml**
-
-In the future the following formats will be supported:
+- **yml** / **yaml**
 - **json**
-- **csv**
-- **md**
+- **json5**
 
-The output format is deduced from the extension.
+The output format is automatically deduced from the file extension if not specified.
 
-## Outputs
+## Format
 
-### `time`
+Currently, it uses the Title as a key for output.
 
-The time we greeted you.
 
 ## Example usage
 
 ```yaml
 uses: actions/notion-to-file-github-pr@v1.1
 with:
-  who-to-greet: 'Mona the Octocat'
+    notion-token: ${{ secrets.NOTION_TOKEN }}
+    notion-db: ${{ secrets.NOTION_DATABASE }}
+    output-file: 'notion.json'
 ```
 
 # 
