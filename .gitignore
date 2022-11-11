@@ -57,4 +57,4 @@ lerna-debug.log*
 node_modules/
 
 # Compiled project files
-dist/
+#dist/
