@@ -1,4 +1,4 @@
-# notion-to-json-yml-file
+# Notion to JSON/YML GitHub Action
 
 Reads from a Notion Database and auto generates a JSON/YML file.
 

@@ -21,7 +21,7 @@ outputs:
     description: 'Whether it was updated or not'
 runs:
   using: 'node16'
-  main: 'index.js'
+  main: 'dist/index.js'
 branding:
   icon: "log-in"
   color: "blue"

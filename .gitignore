@@ -52,3 +52,9 @@ lerna-debug.log*
 
 # dotenv environment variable files
 .secrets
+
+# Dependencies
+node_modules/
+
+# Compiled project files
+dist/
