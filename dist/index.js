@@ -593,7 +593,7 @@ try {
             }
             break
           case 'url':
-            if (value?.url?.length !== 0) {
+            if (value?.url !== null) {
               currentChild[key] = value?.url
             }
             break
@@ -634,7 +634,9 @@ try {
     // Save to file
     fs.writeFileSync(outputFile, outputContent)
 
-    core.debug(`File contents: \n${outputContent}`)
+    // Debug
+    // console.log(outputContent)
+    // core.debug(`File contents: \n${outputContent}`)
   }
   run()
 } catch (error) {
