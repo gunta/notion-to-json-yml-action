@@ -21,9 +21,13 @@ What it does for you
 
 Path where the output file should be.
 
+**Required**-
+
 Example: `file.yml`
 
 ### `output-format`
+
+**Optional**-
 
 Currently, the following output formats are supported:
 - **yml** / **yaml**
@@ -31,6 +35,20 @@ Currently, the following output formats are supported:
 - **json5**
 
 The output format is automatically deduced from the file extension when not specified.
+
+### `ignore-columns`
+
+**Optional**
+
+Array of columns to ignore from Notion.
+
+### `camelcase-keys`
+
+**Optional**
+
+Default: `false`
+
+Whether to transform keys to camelCase
 
 ## Example usage
 
@@ -54,6 +72,7 @@ with:
     output-format: 'yml'
     ignore-columns: |
       'Status'
+    camelcase-keys: true
 
 - name: Create Pull Request
   uses: peter-evans/create-pull-request@v4
@@ -65,11 +84,4 @@ with:
     body: 'Automated changes by GitHub action'
     labels: 'automated-notion'
 ```
-
----
-
-# For developers of this action
-
-## Release
-Just update the `version` in `package.json`.
 

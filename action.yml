@@ -16,6 +16,10 @@ inputs:
   ignore-columns:
     description: 'If any, ignore the columns specified by name'
     required: false
+  camelcase-keys:
+    description: 'camelCase keys'
+    required: false
+    default: "false"
 outputs:
   updated:
     description: 'Whether it was updated or not'
