@@ -65,3 +65,11 @@ with:
     body: 'Automated changes by GitHub action'
     labels: 'automated-notion'
 ```
+
+---
+
+# For developers of this action
+
+## Release
+Just update the `version` in `package.json`.
+

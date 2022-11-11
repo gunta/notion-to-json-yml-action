@@ -23,5 +23,5 @@ runs:
   using: 'node16'
   main: 'dist/index.js'
 branding:
-  icon: "log-in"
-  color: "blue"
+  icon: "refresh-cw"
+  color: "green"
