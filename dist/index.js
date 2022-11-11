@@ -509,8 +509,6 @@ try {
   const ignoreColumns = core.getInput('ignore-columns') || []
   const camelcaseKeysEnabled = core.getBooleanInput('camelcase-keys')
 
-  console.log('camel', camelcaseKeys)
-
   if (notionToken.length === 0) {
     core.error('You need to specify a notion-token')
   }
@@ -541,6 +539,8 @@ try {
     })
 
     const finalPage = {}
+
+    // TODO: loop if there is nextCursor
 
     pages.results.forEach((pageResult) => {
       const currentPage = pageResult.properties

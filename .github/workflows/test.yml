@@ -19,8 +19,7 @@ jobs:
         with:
           notion-token: ${{ secrets.NOTION_TOKEN }}
           notion-db: ${{ secrets.NOTION_DATABASE }}
-          output-file: 'notion.yml'
-          output-format: 'json'
+          output-file: 'notion.json'
           ignore-columns: |
             'Status'
           camelcase-keys: true
