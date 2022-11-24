@@ -22,7 +22,8 @@ jobs:
           output-file: 'notion.yml'
           ignore-columns: |
             'Status'
-          camelcase-keys: true
+          keys-camelcase: true
+          dot-expansion: true
 
 #      - name: Create Pull Request
 #        uses: peter-evans/create-pull-request@v4
