@@ -34,12 +34,120 @@ Reads from a Notion Database and generates a Message Tokens JSON file.
         "actionButton": "Try again",
         "detail": "We couldn't connect due to technical problems.",
         "icon": "i-carbon-wifi-off",
+        "refIcon": "${icons}/connect.noWifi",
         "stack": "Error",
         "title": "Cannot connect"
       }
     }
   }
 }
+```
+
+## Icons
+```json
+{
+  "connect.noWifi": {
+    "$type": "icon",
+    "$value": {
+      "iconifyIcon": "i-carbon-wifi-off",
+      "awesomeIcon": "fa-sharp fa-solid fa-file",
+      "appleSymbol": "person.fill.badge",
+      "materialSymbol": "assistant_direction"
+    }
+  }
+}
+```
+
+---
+# Output
+
+# Web
+```javascript
+
+console.log(payment.lowCredit.title) // Low on credit
+console.log(payment.requestTimeout.icon) // i-carbon-wifi-off
+console.log(payment.requestTimeout.refIcon.connect.noWifi)
+console.log(payment.requestTimeout.refIcon) // i-carbon-wifi-off
+```
+
+# iOS
+
+### Tokens.strings
+```javascript
+"payment.requestTimeout.title" = "Cannot connect"
+"payment.requestTimeout.icon" = "person.fill.badge"
+```
+
+## SwiftUI
+```swift
+// Create a String extension for easier handling
+extension String {
+    var token: String {
+        return NSLocalizedString(self, tableName: "Tokens.strings", bundle: Bundle.main, value: "", comment: "")
+    }
+}
+
+View {
+    VStack {
+        Image(systemName: "payment.requestTimeout.icon".token)
+            .imageScale(.large)
+            .foregroundColor(.accentColor)
+        Text("payment.requestTimeout.title".token)
+    }
+}
+```
+
+# Android
+
+### res/values/tokens.xml
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string name="payments_requestTimeout_title">Cannot connect</string>
+    <string name="payments_requestTimeout_icon">assistant_direction</string>
+</resources>
+```
+
+### sample.kt
+```java
+// In Android
+String string = getResources().getString(R.string.payments_requestTimeout_title);
+```
+
+```kotlin
+// In Android
+val string: String = resources.getString(R.string.payments_requestTimeout_title);
+```
+
+# Flutter
+
+## Samples
+https://poeditor.com/localization/files/arb
+https://github.com/google/app-resource-bundle/blob/master/arb_editor/resource.arb
+
+### tokens.arb
+```json
+{
+  "payment_lowCredit": "Low on credit by {credit}.",
+  "@payment_lowCredit": {
+    "type": "int",
+    "title": "Low on credit",
+    "context": "arb_tokens",
+    "placeholders": {
+      "credit": {
+        "type": "Int",
+        "description": "The remaining credit",
+        "example": 50
+      }
+    }
+  }
+}
+```
+
+```dart
+appBar: AppBar(
+  title: Text(AppLocalizations.of(context)!.payment_lowCredit)
+),
 ```
 
 
