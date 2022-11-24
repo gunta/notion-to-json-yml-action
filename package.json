@@ -4,6 +4,7 @@
   "description": "Reads from a Notion Database and auto generates a json/yml file",
   "main": "dist/index.js",
   "scripts": {
+    "lib-cmd": "node lib/notionToTokens.mjs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx standard",
     "lint:fix": "npx standard --fix",
