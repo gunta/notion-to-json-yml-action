@@ -491,6 +491,7 @@ function camelcaseKeys(input, options) {
 }
 
 // CONCATENATED MODULE: ./lib/index.js
+
 const core = __nccwpck_require__(2186)
 const path = __nccwpck_require__(5622)
 const { Client } = __nccwpck_require__(324)
@@ -499,7 +500,6 @@ const safeStableStringify = __nccwpck_require__(7560)
 const JSON5 = __nccwpck_require__(6904)
 const fs = __nccwpck_require__(5747)
 
-
 try {
   const notionToken = core.getInput('notion-token')
   const notionDb = core.getInput('notion-db')
@@ -507,7 +507,8 @@ try {
   const outputFileExt = path.extname(outputFile).substring(1)
   const outputFormat = core.getInput('output-format').length === 0 ? outputFileExt : core.getInput('output-format')
   const ignoreColumns = core.getInput('ignore-columns') || []
-  const camelcaseKeysEnabled = core.getBooleanInput('camelcase-keys')
+  const keysCamelCaseEnabled = core.getBooleanInput('keys-camelcase')
+  const keysDotExpansionEnabled = core.getBooleanInput('keys-dot-expansion')
 
   if (notionToken.length === 0) {
     core.error('You need to specify a notion-token')
@@ -527,7 +528,8 @@ try {
   core.debug(`Output file extension: ${outputFileExt}`)
   core.debug(`Output file format: ${outputFormat}`)
   core.debug(`Ignore Columns: ${ignoreColumns}`)
-  core.debug(`camelCase Keys: ${camelcaseKeysEnabled}`)
+  core.debug(`Keys camelCase: ${keysCamelCaseEnabled}`)
+  core.debug(`Keys Dot Expansion: ${keysDotExpansionEnabled}`)
 
   const notion = new Client({
     auth: notionToken
@@ -610,7 +612,7 @@ try {
     })
 
     let processedPage = finalPage
-    if (camelcaseKeysEnabled) {
+    if (keysCamelCaseEnabled) {
       processedPage = camelcaseKeys(finalPage, { deep: true })
     }
 

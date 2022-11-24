@@ -19,11 +19,11 @@ inputs:
   keys-camelcase:
     description: 'Keys camelCase'
     required: false
-    default: "false"
+    default: 'false'
   keys-dot-expansion:
     description: 'Keys dot expansion'
     required: false
-    default: "false"
+    default: 'false'
 outputs:
   updated:
     description: 'Whether it was updated or not'
