@@ -1,0 +1,85 @@
+{
+  "1000": {
+    "IconClass": "materials-symbols-rounded",
+    "IconName": "exclamation",
+    "Source": "Backend",
+    "Status": "Done",
+    "Type": "User",
+    "What": "アカウントが存在しません"
+  },
+  "1001": {
+    "IconClass": "materials-symbols-rounded",
+    "IconName": "error",
+    "Source": "Backend",
+    "Status": "Not started",
+    "Type": "User",
+    "What": "メールはすでに存在する"
+  },
+  "2000": {
+    "IconClass": "materials-icons-outline",
+    "Source": "Backend",
+    "Status": "Not started",
+    "Type": "Logic",
+    "What": "パラメーターが正しくない"
+  },
+  "3000": {
+    "IconClass": "materials-symbols-rounded",
+    "Source": "Backend",
+    "Status": "Not started",
+    "Type": "Service",
+    "What": "メンテナンス中"
+  },
+  "3001": {
+    "IconClass": "materials-symbols-rounded",
+    "Source": "Backend",
+    "Status": "Not started",
+    "Type": "Logic",
+    "What": "空レスポンス"
+  },
+  "3002": {
+    "IconClass": "materials-symbols-rounded",
+    "Source": "Backend",
+    "Status": "Not started",
+    "Type": "Service",
+    "What": "タイムアウトしました"
+  },
+  "3003": {
+    "IconClass": "materials-symbols-rounded",
+    "Source": "Frontend",
+    "Status": "Not started",
+    "Type": "Service",
+    "What": "タイムアウトしました",
+    "Why": "弊社の技術的な問題により、接続できませんでした。"
+  },
+  "3004": {
+    "Action": "再度接続をお試しください。",
+    "IconClass": "materials-symbols-rounded",
+    "IconName": "wifi_tethering_error",
+    "Source": "Backend",
+    "Status": "Not started",
+    "Type": "Service",
+    "What": "アカウントに接続できません",
+    "Why": "弊社の技術的な問題により、アカウントに接続できませんでした。"
+  },
+  "4000": {
+    "IconClass": "materials-symbols-rounded",
+    "Source": "Frontend",
+    "Status": "Not started",
+    "Type": "Chime",
+    "What": "接続が切れました"
+  },
+  "5000": {
+    "IconClass": "materials-symbols-rounded",
+    "Source": "Frontend",
+    "Status": "Not started",
+    "Type": "Frontend",
+    "What": "このモバイルブラウザがサポートされてない"
+  },
+  "5001": {
+    "IconClass": "materials-symbols-rounded",
+    "Source": "Frontend",
+    "Status": "Not started",
+    "Type": "Frontend",
+    "What": "このデスクトップブラウザがサポートされてない"
+  }
+}
