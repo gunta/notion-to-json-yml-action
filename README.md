@@ -7,6 +7,7 @@ Reads from a Notion Database and generates a Message Tokens JSON file.
 ```json
 {
   "login.success": {
+    "$comment": ["Comment"],
     "$value": {
       "detail": "ログインできました",
       "icon": "i-carbon-checkmark-filled",
