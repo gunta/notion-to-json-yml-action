@@ -20,7 +20,7 @@ inputs:
     description: 'Keys camelCase'
     required: false
     default: "false"
-  keys-dotexpansion:
+  keys-dot-expansion:
     description: 'Keys dot expansion'
     required: false
     default: "false"
