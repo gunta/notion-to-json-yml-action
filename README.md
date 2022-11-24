@@ -1,11 +1,51 @@
-# Notion to JSON/YML GitHub Action
+# Notion to Message Tokens JSON GitHub Action
 
-Reads from a Notion Database and auto generates a JSON/YML file.
+Reads from a Notion Database and generates a Message Tokens JSON file.
 
-What it does for you
+## What is a Message Tokens?
+
+```json
+{
+  "login.success": {
+    "$value": {
+      "detail": "ログインできました",
+      "icon": "i-carbon-checkmark-filled",
+      "level": "Success",
+      "title": "認証できました"
+    }
+  },
+  "payment": {
+    "lowCredit": {
+      "$type": "dialog",
+      "$value": {
+        "action": "Do you want to add credit?",
+        "actionButton": "Add credit",
+        "detail": "The balance is low.",
+        "icon": "i-carbon-money",
+        "level": "Warning",
+        "title": "Low on credit"
+      }
+    },
+    "requestTimeout": {
+      "$type": "toast",
+      "$value": {
+        "action": "Please try the connection again.",
+        "actionButton": "Try again",
+        "detail": "We couldn't connect due to technical problems.",
+        "icon": "i-carbon-wifi-off",
+        "stack": "Error",
+        "title": "Cannot connect"
+      }
+    }
+  }
+}
+```
+
+
+## What it does for you
 1. Reads all the data from a Notion database
 2. Based on Title, it generates a big object
-2. Then it outputs a file based on the filename extension (ie. `.json`, `.yml`)
+2. Then it outputs a message tokens file based
 
 ## Inputs
 
