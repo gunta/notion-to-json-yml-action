@@ -31,7 +31,7 @@
     "@actions/core": "^1.10.0",
     "@notionhq/client": "^2.2.2",
     "camelcase-keys": "^8.0.2",
-    "json5": "^2.2.1",
+    "json5": "^2.2.2",
     "safe-stable-stringify": "^2.4.1",
     "yaml": "^2.1.3"
   },
